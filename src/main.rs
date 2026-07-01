@@ -2,6 +2,7 @@ use arboard::Clipboard;
 use dioxus::desktop::{Config, WindowBuilder};
 use dioxus::prelude::*;
 use dirs::download_dir;
+use rfd::FileDialog;
 use std::path::PathBuf;
 use youtube_dl::YoutubeDl;
 
@@ -21,7 +22,7 @@ fn App() -> Element {
     let mut link = use_signal(|| String::new());
     let mut output = use_signal(|| PathBuf::new());
 
-    println!("{}, {:?}", link, output);
+    //println!("{}, {:?}", link, output);
     //println!("{}", invalid_args(&link.read(), &output.read()));
 
     rsx! {
@@ -41,9 +42,14 @@ fn App() -> Element {
         tr {
             "output path: ",
             input {
+                value: output.read().to_str(),
                 oninput: move |i| {output.set(PathBuf::from(i.value()))},
                 size: 50,
                 placeholder: "saves to downloads by default"
+            },
+            button {
+                onclick: move |_| output.set(dialog_handling(FileDialog::new().set_directory("/").pick_folder())),
+                "select"
             }
         },
         tr {
@@ -75,5 +81,12 @@ fn some_or_downloads(path: PathBuf) -> PathBuf {
         return download_dir().unwrap();
     } else {
         return path;
+    }
+}
+
+fn dialog_handling(path: Option<PathBuf>) -> PathBuf {
+    match path {
+        Some(value) => return value,
+        None => return PathBuf::new(),
     }
 }
