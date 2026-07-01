@@ -1,4 +1,5 @@
 TODO:
 - [X] "Paste" button for link input
-- [ ] File dialog for selecting output path
+- [X] File dialog for selecting output path
 - [ ] Selecting video format
+- [ ] CSS
