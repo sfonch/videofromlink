@@ -1,0 +1,10 @@
+[package]
+name = "videofromlink"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+arboard = { version = "3.6.1", features = ["wayland-data-control"] }
+dioxus = {version="0.7.9", features=["desktop"]}
+dirs = "6.0.0"
+youtube_dl = "0.10.0"
