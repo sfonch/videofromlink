@@ -12,7 +12,7 @@ fn main() {
             Config::new()
                 .with_disable_context_menu(true)
                 .with_menu(None)
-                .with_window(WindowBuilder::new().with_title("videofromlink (powered by yt-dlp)")),
+                .with_window(WindowBuilder::new().with_title("videofromlink")),
         )
         .launch(App);
 }
