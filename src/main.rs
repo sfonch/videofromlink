@@ -57,8 +57,7 @@ fn App() -> Element {
                 disabled: invalid_args(&link.read(), &output.read()).to_string(),
                 onclick: move |_| {
                     let out = YoutubeDl::new(link.read().as_str())
-                        .download_to(some_or_downloads(output.read().to_owned()).as_path())
-                        .unwrap();
+                        .download_to(some_or_downloads(output.read().to_owned()).as_path());
 
                     println!("{:?}", out);
                 },
